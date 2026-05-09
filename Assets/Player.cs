@@ -10,6 +10,7 @@ public class Player : NetworkBehaviour
 
     public override void Spawned()
     {
+
         if (Object.HasInputAuthority)
         {
             // Assign your XR head (Camera.main or a direct reference)
@@ -17,12 +18,25 @@ public class Player : NetworkBehaviour
         }
     }
 
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    private void RPC_UpdateHeadTransform(Vector3 position, Quaternion rotation)
+    {
+        HeadPosition = position;
+        HeadRotation = rotation;
+    }
+
+
     public override void FixedUpdateNetwork()
     {
         if (Object.HasInputAuthority)
         {
-            HeadPosition = _headTransform.position;
-            HeadRotation = _headTransform.rotation;
+            if (_headTransform == null)
+                _headTransform = Camera.main?.transform;
+
+            if (_headTransform != null)
+            {
+                RPC_UpdateHeadTransform(_headTransform.position, _headTransform.rotation);
+            }
         }
     }
 

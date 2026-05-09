@@ -30,36 +30,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             _spawnedCharacters.Remove(player);
         }
     }
-    void INetworkRunnerCallbacks.OnInput(NetworkRunner runner, NetworkInput input)
-    {
-        var data = new NetworkInputData();
-
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard == null)
-        {
-            input.Set(data);
-            return;
-        }
-
-        if (keyboard.wKey.isPressed)
-            data.Direction += Vector3.forward;
-
-        if (keyboard.sKey.isPressed)
-            data.Direction += Vector3.back;
-
-        if (keyboard.aKey.isPressed)
-            data.Direction += Vector3.left;
-
-        if (keyboard.dKey.isPressed)
-            data.Direction += Vector3.right;
-
-        if (data.Direction.magnitude > 0)
-        {
-            Debug.Log($"Input collected: {data.Direction}", gameObject);
-        }
-
-        input.Set(data);
-    }
+    void INetworkRunnerCallbacks.OnInput(NetworkRunner runner, NetworkInput input) {}
     void INetworkRunnerCallbacks.OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     void INetworkRunnerCallbacks.OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
     void INetworkRunnerCallbacks.OnConnectedToServer(NetworkRunner runner) { }
