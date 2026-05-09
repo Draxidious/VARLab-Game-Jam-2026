@@ -54,10 +54,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (keyboard.dKey.isPressed)
             data.Direction += Vector3.right;
 
-        if (data.Direction.magnitude > 0)
-        {
-            Debug.Log($"Input collected: {data.Direction}", gameObject);
-        }
+        // if (data.Direction.magnitude > 0)
+        // {
+        //     Debug.Log($"Input collected: {data.Direction}", gameObject);
+        // }
 
         input.Set(data);
     }
