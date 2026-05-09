@@ -3,30 +3,32 @@ using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
-    private const float MoveSpeed = 5f;
+    [Networked] public Vector3 HeadPosition { get; set; }
+    [Networked] public Quaternion HeadRotation { get; set; }
 
-    private NetworkCharacterController _cc;
+    private Transform _headTransform; // your XR camera/head transform
 
-    private void Awake()
+    public override void Spawned()
     {
-        _cc = GetComponent<NetworkCharacterController>();
-        if (_cc == null)
+        if (Object.HasInputAuthority)
         {
-            // Debug.LogError("NetworkCharacterController not found on player!", gameObject);
+            // Assign your XR head (Camera.main or a direct reference)
+            _headTransform = Camera.main.transform;
         }
     }
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetworkInputData data))
+        if (Object.HasInputAuthority)
         {
-            // Debug.LogWarning($"GetInput for player {Object.InputAuthority}", gameObject);
-            data.Direction.Normalize();
-            _cc.Move(MoveSpeed * data.Direction * Runner.DeltaTime);
+            HeadPosition = _headTransform.position;
+            HeadRotation = _headTransform.rotation;
         }
-        else
-        {
-            // Debug.LogWarning($"GetInput failed for player {Object.InputAuthority}", gameObject);
-        }
+    }
+
+    public override void Render()
+    {
+        transform.position = HeadPosition;
+        transform.rotation = HeadRotation;
     }
 }
