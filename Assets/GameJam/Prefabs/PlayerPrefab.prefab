@@ -96,9 +96,6 @@ GameObject:
   m_Component:
   - component: {fileID: 164337774563094082}
   - component: {fileID: 4411668499854036472}
-  - component: {fileID: 6101662602463470054}
-  - component: {fileID: 7023528823414009050}
-  - component: {fileID: 5093576299864242387}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -138,63 +135,5 @@ MonoBehaviour:
   ObjectInterest: 0
   Flags: 262145
   NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 7023528823414009050}
-  - {fileID: 5093576299864242387}
+  NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0
---- !u!143 &6101662602463470054
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3966487243438639096}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.01
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7023528823414009050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3966487243438639096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -9.81
-  jumpImpulse: 5
-  acceleration: 10
-  braking: 10
-  maxSpeed: 4
-  rotationSpeed: 15
---- !u!114 &5093576299864242387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3966487243438639096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7da03ab6cf8ac74397c872261394eae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
