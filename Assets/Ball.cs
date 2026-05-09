@@ -16,7 +16,13 @@ public class Ball : MonoBehaviour
 
     private bool initialHit = false;
 
+    private float forwardDirection = 1f;
+
     private GameObject lastHitObject = null;
+
+    private GameObject currentHitObject = null;
+
+    private Vector3 velocityDirection = Vector3.zero;
 
     // -- Public variables --
 
@@ -41,13 +47,53 @@ public class Ball : MonoBehaviour
         {
             //Debug.Log("Hit");
 
-            if(hitInfo.transform.gameObject != lastHitObject)
+            currentHitObject = hitInfo.transform.gameObject;
+
+            if(currentHitObject != lastHitObject)
             {
 
-                if(hitInfo.transform.gameObject.transform.position.z > lastPosition.z)
+                // When it hits a wall, we want to maintain the same speed but reflect the ball rather than just using the forward vector
+                if(currentHitObject.layer == LayerMask.NameToLayer("Wall")) 
                 {
-                    //Debug.Log("Collided with Weapon from the front!");
-                    //hitInfo.transform.gameObject.GetComponent<Racquet>().SetForward(-1);
+                    if(currentHitObject.transform.position.z > lastPosition.z)
+                    {
+                        //Debug.Log("Collided with Wall from the front!");
+                        forwardDirection = -1f;
+                    }
+                    else
+                    {
+                        //Debug.Log("Collided with Wall from the back!");
+                        forwardDirection = 1f;
+                    }
+
+                    if(currentHitObject.transform.position.z > lastPosition.z)forwardDirection = 1f;
+
+                    velocityDirection = rb.linearVelocity;
+                    rb.linearVelocity = Vector3.zero;
+                    
+                    velocityDirection = Vector3.Reflect(velocityDirection, currentHitObject.transform.forward);
+
+                    rb.AddForce(velocityDirection * currentSpeed, ForceMode.Impulse);
+                }
+                // When it hits a racket, we want to apply force based on the direction of the hit and increase the speed
+                else 
+                {
+                    if(currentHitObject.transform.position.z > lastPosition.z)
+                    {
+                        //Debug.Log("Collided with Weapon from the front!");
+                        //hitInfo.transform.gameObject.GetComponent<Racquet>().SetForward(-1);
+                        rb.linearVelocity = Vector3.zero;
+
+                        forwardDirection = -1f;
+                    }
+                    else
+                    {
+                        //Debug.Log("Collided with Weapon from the back!");
+                        //hitInfo.transform.gameObject.GetComponent<Racquet>().SetForward(1);
+
+                        forwardDirection = 1f;
+                    }
+
                     rb.linearVelocity = Vector3.zero;
 
                     if( currentSpeed * speedMultiplier >= maxSpeed)
@@ -59,34 +105,18 @@ public class Ball : MonoBehaviour
                         currentSpeed *= speedMultiplier;
                     }
 
-                    rb.AddForce(-hitInfo.transform.gameObject.transform.forward * currentSpeed, ForceMode.Impulse);
-                }
-                else
-                {
-                    //Debug.Log("Collided with Weapon from the back!");
-                    //hitInfo.transform.gameObject.GetComponent<Racquet>().SetForward(1);
-                    rb.linearVelocity = Vector3.zero;
-
-                    if( currentSpeed * speedMultiplier >= maxSpeed)
-                    {
-                        currentSpeed = maxSpeed;
-                    }
-                    else
-                    {
-                        currentSpeed *= speedMultiplier;
-                    }
-
-                    rb.AddForce(hitInfo.transform.gameObject.transform.forward * currentSpeed, ForceMode.Impulse);
+                    rb.AddForce(currentHitObject.transform.forward * forwardDirection * currentSpeed, ForceMode.Impulse);
                 }
 
-                lastHitObject = hitInfo.transform.gameObject;
+                
+
+                lastHitObject = currentHitObject;
             }
             else
             {
                 Debug.Log("Hit the same object again, ignoring.");
             }
 
-           
             
             //Debug.Log("Raycast hit: " + hitInfo.collider.gameObject.name);
         }
