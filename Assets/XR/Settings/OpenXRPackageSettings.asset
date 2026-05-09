@@ -872,18 +872,8 @@ MonoBehaviour:
   features:
   - {fileID: 8736661028334727731}
   - {fileID: 3598254934845347770}
-  - {fileID: 4302142267159278574}
-  - {fileID: 3093159773772751411}
   - {fileID: 1170704673688743257}
-  - {fileID: -6203720160430598103}
-  - {fileID: -5051287793267497576}
-  - {fileID: 5760903416199553091}
   - {fileID: 5153017048313567732}
-  - {fileID: -5698233898174505405}
-  - {fileID: 5652462132249564714}
-  - {fileID: -3050868437020814347}
-  - {fileID: -6994792749693464768}
-  - {fileID: -4006589914183634544}
   - {fileID: 6481653220666705815}
   - {fileID: 7393116930172532905}
   - {fileID: 5947086813387164150}
@@ -1643,8 +1633,8 @@ MonoBehaviour:
   features:
   - {fileID: 7011443450567333355}
   - {fileID: -671281728444007487}
-  - {fileID: -2970389435521841166}
-  - {fileID: -1734471456787174204}
+  - {fileID: 8233290383763243063}
+  - {fileID: 6845453388025118674}
   - {fileID: 8980318060753866109}
   - {fileID: -6559185765804338520}
   - {fileID: -4756202077021157709}
@@ -1655,7 +1645,7 @@ MonoBehaviour:
   - {fileID: 348827886137839178}
   - {fileID: -7499073031166464939}
   - {fileID: 7666556398442971420}
-  - {fileID: -925488253877317748}
+  - {fileID: -1741969912156067751}
   - {fileID: -4363231183632145407}
   - {fileID: -1214223305509136874}
   - {fileID: -8580731644415927221}
@@ -2109,7 +2099,7 @@ MonoBehaviour:
   nameUi: 'Android XR: AR Anchor'
   version: 0.1.0
   featureIdInternal: com.unity.openxr.feature.arfoundation-androidxr-anchor
-  openxrExtensionStrings: XR_ANDROID_trackables
+  openxrExtensionStrings: XR_ANDROID_trackables XR_ANDROID_device_anchor_persistence
   company: Unity Technologies
   priority: 0
   targetOpenXRApiVersion: 
@@ -3406,7 +3396,7 @@ MonoBehaviour:
   nameUi: 'Android XR: AR Anchor'
   version: 0.1.0
   featureIdInternal: com.unity.openxr.feature.arfoundation-androidxr-anchor
-  openxrExtensionStrings: XR_ANDROID_trackables
+  openxrExtensionStrings: XR_ANDROID_trackables XR_ANDROID_device_anchor_persistence
   company: Unity Technologies
   priority: 0
   targetOpenXRApiVersion: 
