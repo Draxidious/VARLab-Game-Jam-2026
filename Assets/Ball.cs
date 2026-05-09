@@ -51,50 +51,20 @@ public class Ball : MonoBehaviour
 
             if(currentHitObject != lastHitObject)
             {
+                transform.position = hitInfo.point;
 
                 // When it hits a wall, we want to maintain the same speed but reflect the ball rather than just using the forward vector
                 if(currentHitObject.layer == LayerMask.NameToLayer("Wall")) 
                 {
-                    if(currentHitObject.transform.position.z > lastPosition.z)
-                    {
-                        //Debug.Log("Collided with Wall from the front!");
-                        forwardDirection = -1f;
-                    }
-                    else
-                    {
-                        //Debug.Log("Collided with Wall from the back!");
-                        forwardDirection = 1f;
-                    }
 
-                    if(currentHitObject.transform.position.z > lastPosition.z)forwardDirection = 1f;
+                    Vector3 direction = Vector3.Reflect(rb.linearVelocity.normalized, hitInfo.normal);
 
-                    velocityDirection = rb.linearVelocity;
-                    rb.linearVelocity = Vector3.zero;
-                    
-                    velocityDirection = Vector3.Reflect(velocityDirection, currentHitObject.transform.forward);
-
-                    rb.AddForce(velocityDirection * currentSpeed, ForceMode.Impulse);
+                    rb.linearVelocity = direction * currentSpeed;
                 }
                 // When it hits a racket, we want to apply force based on the direction of the hit and increase the speed
                 else 
                 {
-                    if(currentHitObject.transform.position.z > lastPosition.z)
-                    {
-                        //Debug.Log("Collided with Weapon from the front!");
-                        //hitInfo.transform.gameObject.GetComponent<Racquet>().SetForward(-1);
-                        rb.linearVelocity = Vector3.zero;
-
-                        forwardDirection = -1f;
-                    }
-                    else
-                    {
-                        //Debug.Log("Collided with Weapon from the back!");
-                        //hitInfo.transform.gameObject.GetComponent<Racquet>().SetForward(1);
-
-                        forwardDirection = 1f;
-                    }
-
-                    rb.linearVelocity = Vector3.zero;
+                    
 
                     if( currentSpeed * speedMultiplier >= maxSpeed)
                     {
@@ -105,7 +75,7 @@ public class Ball : MonoBehaviour
                         currentSpeed *= speedMultiplier;
                     }
 
-                    rb.AddForce(currentHitObject.transform.forward * forwardDirection * currentSpeed, ForceMode.Impulse);
+                    rb.AddForce(hitInfo.normal * currentSpeed, ForceMode.Impulse);
                 }
 
                 
@@ -129,21 +99,21 @@ public class Ball : MonoBehaviour
         if (!initialHit && other.gameObject.layer == LayerMask.NameToLayer("Racket"))
         {
 
-            if(other.gameObject.transform.position.z > transform.position.z)
+            Vector3 localPos = other.transform.InverseTransformPoint(transform.position);
+
+            if(localPos.z > 0)
             {
-                //Debug.Log("Collided with Weapon from the front!");
-                //other.GetComponent<Racquet>().SetForward(-1);
+                // Ball is in FRONT of the other object
                 rb.linearVelocity = Vector3.zero;
                 currentSpeed *= speedMultiplier;
-                rb.AddForce(-other.gameObject.transform.forward * currentSpeed, ForceMode.Impulse);
+                rb.AddForce(other.transform.forward * currentSpeed, ForceMode.Impulse);
             }
             else
             {
-                //Debug.Log("Collided with Weapon from the back!");
-                //other.GetComponent<Racquet>().SetForward(1);
+                // Ball is BEHIND the other object
                 rb.linearVelocity = Vector3.zero;
                 currentSpeed *= speedMultiplier;
-                rb.AddForce(other.gameObject.transform.forward * currentSpeed, ForceMode.Impulse);
+                rb.AddForce(-other.transform.forward * currentSpeed, ForceMode.Impulse);
             }
 
             initialHit = true;
