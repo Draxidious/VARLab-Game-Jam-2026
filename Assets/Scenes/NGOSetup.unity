@@ -1046,6 +1046,7 @@ GameObject:
   - component: {fileID: 852290726}
   - component: {fileID: 852290725}
   - component: {fileID: 852290728}
+  - component: {fileID: 852290729}
   m_Layer: 0
   m_Name: SharedAnchor
   m_TagString: SharedAnchor
@@ -1136,8 +1137,22 @@ MonoBehaviour:
   m_renderersToToggle:
   - {fileID: 852290725}
   m_leftControllerTransform: {fileID: 1841376762}
-  m_ToggleCallibration: {fileID: 1522228453493499993, guid: a7da24906ee03a943b45db511a9d85ff, type: 3}
-  Callibrating: 1
+  m_ToggleCallibration: {fileID: 5005263403065747997, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  Callibrating: 0
+--- !u!114 &852290729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852290723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ActionAssets:
+  - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &943614835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,9 +1618,6 @@ GameObject:
   - component: {fileID: 1246932726}
   - component: {fileID: 1246932725}
   - component: {fileID: 1246932724}
-  - component: {fileID: 1246932723}
-  - component: {fileID: 1246932722}
-  - component: {fileID: 1246932721}
   m_Layer: 5
   m_Name: JoinCodeCanvas
   m_TagString: Untagged
@@ -1613,60 +1625,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1246932721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246932720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ca1025449995548b9e440de76af7b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NetworkManager: {fileID: 1387501613}
-  m_ballServerPrefab: {fileID: 1282239637996176391, guid: ee6353c9b9bf2004da476d692ef1622c, type: 3}
-  m_DemoBallManager: {fileID: 1830611725914888872, guid: 2196e27c2ababef45a19867602aa6b07, type: 3}
-  joinCodeInput: {fileID: 0}
-  joinCodeDisplay: {fileID: 1386034515}
---- !u!114 &1246932722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246932720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb86ba9d4c5126e48bfef9b0c9550e9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _pointableElement: {fileID: 1246932723}
-  _surface: {fileID: 0}
-  _selectSurface: {fileID: 0}
-  _movementProvider: {fileID: 0}
-  _tiebreakerScore: 0
---- !u!114 &1246932723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246932720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ffe41fe81087fa41a2062cc69b99615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transferOnSecondSelection: 0
-  _addNewPointsToFront: 0
-  _forwardElement: {fileID: 0}
-  _canvas: {fileID: 1246932726}
 --- !u!114 &1246932724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,7 +1705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.648}
+  m_AnchoredPosition: {x: -1.049, y: 0.648}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1282406140

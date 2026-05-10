@@ -38,10 +38,10 @@ public class SharedAnchor : MonoBehaviour
     public void ToggleCallibration(InputAction.CallbackContext context)
     {
         Callibrating = !Callibrating;
-        foreach (var renderer in m_renderersToToggle)
-        {
-            renderer.enabled = !Callibrating;
-        }
+        // foreach (var renderer in m_renderersToToggle)
+        // {
+        //     renderer.enabled = !Callibrating;
+        // }
     }
 
 }
