@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "Test",
+    "maps": [
+        {
+            "name": "Quest3",
+            "id": "d6cb8dad-89bf-4bf8-8f9d-fd0b6f844207",
+            "actions": [
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "8f3cb0f9-5b6d-44ba-9f1e-4c19a91942ee",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d982dba8-3fd2-4858-bd5c-f13d8cd7fe1a",
+                    "path": "<OculusTouchController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
