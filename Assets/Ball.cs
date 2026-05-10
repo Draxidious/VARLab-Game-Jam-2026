@@ -43,15 +43,13 @@ public class Ball : MonoBehaviour
     {
         //Debug.DrawLine(lastPosition, transform.position, Color.red, 1.0f);
 
-        if(initialHit && Physics.Linecast(lastPosition, transform.position, out RaycastHit hitInfo, collisionMask))
+        if(Physics.Linecast(lastPosition, transform.position, out RaycastHit hitInfo, collisionMask))
         {
             //Debug.Log("Hit");
 
             currentHitObject = hitInfo.transform.gameObject;
-
             if(currentHitObject != lastHitObject)
             {
-                transform.position = hitInfo.point;
 
                 // When it hits a wall, we want to maintain the same speed but reflect the ball rather than just using the forward vector
                 if(currentHitObject.layer == LayerMask.NameToLayer("Wall")) 
@@ -59,26 +57,28 @@ public class Ball : MonoBehaviour
 
                     Vector3 direction = Vector3.Reflect(rb.linearVelocity.normalized, hitInfo.normal);
 
-                    rb.linearVelocity = direction * currentSpeed;
-                }
-                // When it hits a racket, we want to apply force based on the direction of the hit and increase the speed
-                else 
-                {
-                    
-
-                    if( currentSpeed * speedMultiplier >= maxSpeed)
+                    if( currentSpeed >= maxSpeed)
                     {
                         currentSpeed = maxSpeed;
                     }
-                    else
-                    {
-                        currentSpeed *= speedMultiplier;
-                    }
-
-                    rb.AddForce(hitInfo.normal * currentSpeed, ForceMode.Impulse);
+                    rb.linearVelocity = direction * currentSpeed;
                 }
+                // // When it hits a racket, we want to apply force based on the direction of the hit and increase the speed
+                // else 
+                // {
+                    
 
-                
+                //     if( currentSpeed * speedMultiplier >= maxSpeed)
+                //     {
+                //         currentSpeed = maxSpeed;
+                //     }
+                //     else
+                //     {
+                //         currentSpeed *= speedMultiplier;
+                //     }
+
+                //     rb.AddForce(hitInfo.normal * currentSpeed, ForceMode.Impulse);
+                // }
 
                 lastHitObject = currentHitObject;
             }
@@ -96,8 +96,9 @@ public class Ball : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!initialHit && other.gameObject.layer == LayerMask.NameToLayer("Racket"))
+        if (currentHitObject != other.gameObject && other.gameObject.layer == LayerMask.NameToLayer("Racket"))
         {
+            currentHitObject = other.gameObject;
 
             Vector3 localPos = other.transform.InverseTransformPoint(transform.position);
 
@@ -105,18 +106,34 @@ public class Ball : MonoBehaviour
             {
                 // Ball is in FRONT of the other object
                 rb.linearVelocity = Vector3.zero;
-                currentSpeed *= speedMultiplier;
-                rb.AddForce(other.transform.forward * currentSpeed, ForceMode.Impulse);
+
+                if( currentSpeed * speedMultiplier >= maxSpeed)
+                {
+                    currentSpeed = maxSpeed;
+                }
+                else
+                {
+                    currentSpeed *= speedMultiplier;
+                }
+                rb.linearVelocity = other.transform.forward  * currentSpeed;
             }
             else
             {
                 // Ball is BEHIND the other object
                 rb.linearVelocity = Vector3.zero;
-                currentSpeed *= speedMultiplier;
-                rb.AddForce(-other.transform.forward * currentSpeed, ForceMode.Impulse);
-            }
 
-            initialHit = true;
+                if( currentSpeed * speedMultiplier >= maxSpeed)
+                {
+                    currentSpeed = maxSpeed;
+                }
+                else
+                {
+                    currentSpeed *= speedMultiplier;
+                }
+                rb.linearVelocity = -other.transform.forward  * currentSpeed;
+            }
+            lastHitObject = currentHitObject;
+            
         }
     }
 }
