@@ -790,15 +790,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2273416444203144963, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2273416444203144963, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2273416444203144963, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2273416444203144963, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -840,14 +840,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2273416444203144963, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3743572584112054391, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 5919813633605027145, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 297463352282923649, guid: 1271a4953fd84d94393de402814e8b36, type: 3}
+    - target: {fileID: 7275668905061871369, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
+      propertyPath: m_Radius
+      value: 0.0013
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358424295721088678, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7358424295721088678, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7a7428c4b2d8e6e439f3a89f81f5c857, type: 2}
+      objectReference: {fileID: -7206454833505062431, guid: 1271a4953fd84d94393de402814e8b36, type: 3}
     - target: {fileID: 7748138460183603646, guid: 0aa1473cc3c7367469b910d30d3141db, type: 3}
       propertyPath: maxSpeed
       value: 10
